@@ -7,8 +7,9 @@ node_modules/
 # Build and release artifacts
 dist/
 *.tgz
-streamdeck-plugin/.sdPlugin/bin/
-streamdeck-plugin/.sdPlugin/logs/
+streamdeck-plugin/com.chrisfryer.opencode-stats.sdPlugin/bin/
+streamdeck-plugin/com.chrisfryer.opencode-stats.sdPlugin/logs/
+streamdeck-plugin/dist/
 
 # Logs
 *.log

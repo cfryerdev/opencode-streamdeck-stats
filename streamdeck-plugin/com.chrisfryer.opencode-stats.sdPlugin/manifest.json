@@ -3,7 +3,6 @@
   "Actions": [
     {
       "Icon": "imgs/actions/total-cost",
-      "Category": "Opencode",
       "Name": "Total Cost",
       "States": [
         {
@@ -21,7 +20,6 @@
     },
     {
       "Icon": "imgs/actions/cost-per-day",
-      "Category": "Opencode",
       "Name": "Cost per Day",
       "States": [
         {
@@ -39,7 +37,6 @@
     },
     {
       "Icon": "imgs/actions/cost-this-month",
-      "Category": "Opencode",
       "Name": "Cost this Month",
       "States": [
         {
@@ -57,7 +54,6 @@
     },
     {
       "Icon": "imgs/actions/input-tokens",
-      "Category": "Opencode",
       "Name": "Input Tokens",
       "States": [
         {
@@ -75,7 +71,6 @@
     },
     {
       "Icon": "imgs/actions/output-tokens",
-      "Category": "Opencode",
       "Name": "Output Tokens",
       "States": [
         {
@@ -93,7 +88,6 @@
     },
     {
       "Icon": "imgs/actions/reasoning-tokens",
-      "Category": "Opencode",
       "Name": "Reasoning Tokens",
       "States": [
         {
@@ -111,7 +105,6 @@
     },
     {
       "Icon": "imgs/actions/cache-read",
-      "Category": "Opencode",
       "Name": "Cache Read",
       "States": [
         {
@@ -129,7 +122,6 @@
     },
     {
       "Icon": "imgs/actions/cache-write",
-      "Category": "Opencode",
       "Name": "Cache Write",
       "States": [
         {
@@ -147,7 +139,6 @@
     },
     {
       "Icon": "imgs/actions/active-sessions",
-      "Category": "Opencode",
       "Name": "Active Sessions",
       "States": [
         {
@@ -165,7 +156,6 @@
     },
     {
       "Icon": "imgs/actions/total-sessions",
-      "Category": "Opencode",
       "Name": "Total Sessions",
       "States": [
         {
@@ -183,7 +173,6 @@
     },
     {
       "Icon": "imgs/actions/tokens-per-session",
-      "Category": "Opencode",
       "Name": "Tokens per Session",
       "States": [
         {
@@ -211,8 +200,14 @@
     "Version": "20"
   },
   "OS": [
-    { "Platform": "mac", "MinimumVersion": "13" },
-    { "Platform": "windows", "MinimumVersion": "10" }
+    {
+      "Platform": "mac",
+      "MinimumVersion": "13"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
   ],
   "UUID": "com.chrisfryer.opencode-stats",
   "Version": "1.0.0.11",

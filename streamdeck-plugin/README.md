@@ -16,6 +16,8 @@ It reads stats in this order:
 npm run build
 npm run watch
 npm run sync
+npm run validate
+npm run pack
 ```
 
 ## Deploy location
@@ -26,6 +28,15 @@ The sync script deploys to:
 
 ## Store packaging
 
-This folder is the store-facing plugin package root (`.sdPlugin` + build tooling).
+This folder is the store-facing plugin package root (`com.chrisfryer.opencode-stats.sdPlugin` + build tooling).
 
-After metadata/icon updates, bump `.sdPlugin/manifest.json` version before restart so Stream Deck refreshes cache.
+After metadata/icon updates, bump `com.chrisfryer.opencode-stats.sdPlugin/manifest.json` version before restart so Stream Deck refreshes cache.
+
+To produce the `.streamDeckPlugin` file required by the Elgato Marketplace Maker portal:
+
+```bash
+npm run pack
+```
+
+This builds the plugin, validates it against the Elgato schema, and writes
+`dist/com.chrisfryer.opencode-stats.streamDeckPlugin`, which is the file to upload in Maker.

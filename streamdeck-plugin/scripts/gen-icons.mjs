@@ -109,8 +109,8 @@ function genPluginIcon() {
     savePNG(path, W, H, px);
   };
 
-  make(256, ".sdPlugin/plugin_icon.png");
-  make(512, ".sdPlugin/plugin_icon@2x.png");
+  make(256, "com.chrisfryer.opencode-stats.sdPlugin/plugin_icon.png");
+  make(512, "com.chrisfryer.opencode-stats.sdPlugin/plugin_icon@2x.png");
 }
 
 // Action icon: 20x20 monochrome white "O" on transparent
@@ -125,8 +125,8 @@ function genActionIcon() {
     savePNG(path, W, H, px);
   };
 
-  make(20, ".sdPlugin/imgs/actions/icon.png");
-  make(40, ".sdPlugin/imgs/actions/icon@2x.png");
+  make(20, "com.chrisfryer.opencode-stats.sdPlugin/imgs/actions/icon.png");
+  make(40, "com.chrisfryer.opencode-stats.sdPlugin/imgs/actions/icon@2x.png");
 }
 
 // Category icon: 28x28 monochrome white "O" on transparent
@@ -141,8 +141,8 @@ function genCategoryIcon() {
     savePNG(path, W, H, px);
   };
 
-  make(28, ".sdPlugin/category_icon.png");
-  make(56, ".sdPlugin/category_icon@2x.png");
+  make(28, "com.chrisfryer.opencode-stats.sdPlugin/category_icon.png");
+  make(56, "com.chrisfryer.opencode-stats.sdPlugin/category_icon@2x.png");
 }
 
 // Key state image: 72x72 dark background with subtle opencode "O"
@@ -163,8 +163,8 @@ function genKeyImage() {
     savePNG(path, W, H, px);
   };
 
-  make(72, ".sdPlugin/imgs/actions/key.png");
-  make(144, ".sdPlugin/imgs/actions/key@2x.png");
+  make(72, "com.chrisfryer.opencode-stats.sdPlugin/imgs/actions/key.png");
+  make(144, "com.chrisfryer.opencode-stats.sdPlugin/imgs/actions/key@2x.png");
 }
 
 genPluginIcon();

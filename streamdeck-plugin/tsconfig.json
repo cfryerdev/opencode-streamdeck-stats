@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./.sdPlugin/bin",
+    "outDir": "./com.chrisfryer.opencode-stats.sdPlugin/bin",
     "types": ["node"]
   },
   "include": ["src/**/*.ts"]

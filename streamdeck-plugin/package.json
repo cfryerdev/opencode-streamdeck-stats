@@ -6,8 +6,10 @@
   "scripts": {
     "build": "rollup -c && node scripts/sync.mjs",
     "watch": "rollup -c -w --watch.onEnd=\"node scripts/sync.mjs && streamdeck restart com.chrisfryer.opencode-stats\"",
-    "link": "streamdeck link .sdPlugin",
-    "sync": "node scripts/sync.mjs"
+    "link": "streamdeck link com.chrisfryer.opencode-stats.sdPlugin",
+    "sync": "node scripts/sync.mjs",
+    "validate": "streamdeck validate com.chrisfryer.opencode-stats.sdPlugin",
+    "pack": "npm run build && streamdeck validate com.chrisfryer.opencode-stats.sdPlugin && streamdeck pack com.chrisfryer.opencode-stats.sdPlugin --output dist --force"
   },
   "license": "MIT",
   "dependencies": {

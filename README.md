@@ -9,6 +9,18 @@ This repo now has two clearly separated parts:
 - `opencode-plugin/` - the OpenCode plugin that does stats aggregation and serves a local `/stats` endpoint.
 - `streamdeck-plugin/` - the Stream Deck plugin (store-facing package) that renders keys and reads stats.
 
+## Setup Instructions
+
+You need two parts to make this work:
+
+### Opencode Stats Plugin
+
+<package-instructions>
+
+### Elgato Streamdeck Plugin
+
+Coming soon...
+
 ## Goal
 
 Install one file into `~/.config/opencode/plugins` for OpenCode-side heavy lifting,
@@ -22,7 +34,7 @@ opencode-plugin/
   README.md
 
 streamdeck-plugin/
-  .sdPlugin/
+  com.chrisfryer.opencode-stats.sdPlugin/
   src/
   scripts/
   package.json

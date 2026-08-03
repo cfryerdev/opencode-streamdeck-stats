@@ -5,7 +5,7 @@ import typescript from "@rollup/plugin-typescript";
 export default {
   input: "src/index.ts",
   output: {
-    file: ".sdPlugin/bin/plugin.js",
+    file: "com.chrisfryer.opencode-stats.sdPlugin/bin/plugin.js",
     format: "cjs",
     sourcemap: true,
   },

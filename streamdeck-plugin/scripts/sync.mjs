@@ -2,14 +2,14 @@ import { cpSync, mkdirSync, rmSync, existsSync, readdirSync, unlinkSync, rmdirSy
 import { basename, join } from "node:path";
 import { homedir } from "node:os";
 
-const source = join(process.cwd(), ".sdPlugin");
+const source = join(process.cwd(), "com.chrisfryer.opencode-stats.sdPlugin");
 const dest = join(
   homedir(),
   "Library/Application Support/com.elgato.StreamDeck/Plugins/com.chrisfryer.opencode-stats.sdPlugin",
 );
 
 if (!existsSync(source)) {
-  console.error("sync: .sdPlugin not found. Run `npm run build` first.");
+  console.error("sync: com.chrisfryer.opencode-stats.sdPlugin not found. Run `npm run build` first.");
   process.exit(1);
 }
 
