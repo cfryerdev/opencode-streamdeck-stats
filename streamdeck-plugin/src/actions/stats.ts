@@ -2,12 +2,12 @@ import streamDeck, {
   action,
   SingletonAction,
   type KeyAction,
-  type JsonObject,
   type WillAppearEvent,
   type WillDisappearEvent,
   type DidReceiveSettingsEvent,
   type KeyDownEvent,
 } from "@elgato/streamdeck";
+import type { JsonObject } from "@elgato/utils";
 import { OpenCodeClient, DEFAULT_SERVER_URL, type Stats } from "../api";
 
 export type StatType =

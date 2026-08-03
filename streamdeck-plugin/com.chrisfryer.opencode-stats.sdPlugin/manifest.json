@@ -211,7 +211,7 @@
   ],
   "UUID": "com.chrisfryer.opencode-stats",
   "Version": "1.0.0.11",
-  "SDKVersion": 2,
+  "SDKVersion": 3,
   "Software": {
     "MinimumVersion": "7.1"
   }

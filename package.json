@@ -5,6 +5,8 @@
     "streamdeck:build": "npm --prefix streamdeck-plugin run build",
     "streamdeck:watch": "npm --prefix streamdeck-plugin run watch",
     "streamdeck:sync": "npm --prefix streamdeck-plugin run sync",
+    "streamdeck:validate": "npm --prefix streamdeck-plugin run validate",
+    "streamdeck:pack": "npm --prefix streamdeck-plugin run pack",
     "opencode:install": "mkdir -p \"$HOME/.config/opencode/plugins\" && cp opencode-plugin/opencode-streamdeck-stats.js \"$HOME/.config/opencode/plugins/opencode-streamdeck-stats.js\""
   }
 }

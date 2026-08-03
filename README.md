@@ -13,24 +13,50 @@ This repo now has two clearly separated parts:
 
 You need two parts to make this work:
 
-### Opencode Stats Plugin
+### 1. Opencode Stats Plugin
 
-<package-instructions>
+Add `opencode-streamdeck-stats` to the `plugin` array in your `opencode.json`:
 
-### Elgato Streamdeck Plugin
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "opencode-streamdeck-stats"
+  ]
+}
+```
+
+Then restart opencode. The plugin starts a local stats server on `http://127.0.0.1:4649` that the Stream Deck plugin reads from.
+
+#### Optional environment variables
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `OPENCODE_STREAMDECK_HOST` | `127.0.0.1` | Host to bind the stats server |
+| `OPENCODE_STREAMDECK_PORT` | `4649` | Port for the stats server |
+| `OPENCODE_DB_PATH` | `~/.local/share/opencode/opencode.db` | Path to the opencode SQLite database |
+
+#### Verify it's running
+
+```bash
+curl http://127.0.0.1:4649/health
+# {"ok":true,"service":"opencode-streamdeck-stats"}
+
+curl http://127.0.0.1:4649/stats
+# {"totalCost":126.68,"costLastDay":5.43,"costLast30Days":5.43,...}
+```
+
+### 2. Elgato Stream Deck Plugin
 
 Coming soon...
 
-## Goal
-
-Install one file into `~/.config/opencode/plugins` for OpenCode-side heavy lifting,
-and distribute the Stream Deck plugin as the user-facing package.
 
 ## Folder layout
 
 ```
 opencode-plugin/
   opencode-streamdeck-stats.js
+  package.json
   README.md
 
 streamdeck-plugin/
@@ -41,13 +67,13 @@ streamdeck-plugin/
   README.md
 ```
 
-## Quick start
+## Developer Quick start
 
-1. Install the OpenCode plugin from `opencode-plugin/README.md`.
-2. Build/deploy the Stream Deck plugin from `streamdeck-plugin/README.md`.
-3. Restart OpenCode and Stream Deck.
+1. Add `"opencode-streamdeck-stats"` to the `plugin` array in your `opencode.json`.
+2. Restart opencode.
+3. Build/deploy the Stream Deck plugin from `streamdeck-plugin/README.md`.
 
-## Workspace commands
+### Workspace commands
 
 From repo root:
 
@@ -55,33 +81,14 @@ From repo root:
 - `npm run streamdeck:build`
 - `npm run streamdeck:watch`
 
-## Automated release (GitHub -> npm)
+### Automated release (GitHub -> npm)
 
 Package name: `opencode-streamdeck-stats`
 
-This repo includes `.github/workflows/release.yml` and semantic-release config.
-On every push to `main`, the workflow will:
+On every push to `main`, `.github/workflows/release.yml` reads the version from `opencode-plugin/package.json`, and if that version isn't already on npm, it:
 
-1. Create a GitHub Release
-2. Publish `opencode-plugin/` to npm
+1. Publishes to npm via OIDC trusted publishing (with provenance)
+2. Tags the release (`v<version>`)
+3. Creates a GitHub Release with auto-generated notes
 
-### One-time npm trusted publishing setup
-
-1. Ensure the package exists on npm (`opencode-streamdeck-stats`).
-   - npm currently requires package settings to exist before you can attach a trusted publisher.
-   - If this is the first release ever, publish once manually from `opencode-plugin/` to bootstrap:
-
-   ```bash
-   cd opencode-plugin
-   npm publish --access public --provenance=false
-   ```
-2. Open `https://www.npmjs.com/package/opencode-streamdeck-stats/access`.
-3. Add a Trusted Publisher:
-   - Provider: GitHub Actions
-   - Owner/User: `cfryerdev`
-   - Repository: `opencode-streamdeck-stats`
-   - Workflow file: `release.yml`
-   - Allowed action: `npm publish`
-4. Push to `main`.
-
-The workflow uses GitHub OIDC trusted publishing (`id-token: write`) and does not require `NPM_TOKEN`.
+To release a new version, bump `version` in `opencode-plugin/package.json` and push to `main`.
