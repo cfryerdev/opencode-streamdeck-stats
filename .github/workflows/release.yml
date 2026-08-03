@@ -29,9 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Ensure recent npm for OIDC publishing
-        run: npm install -g npm@latest
-
       - name: Release to GitHub and npm
         run: npm run release
         env:
