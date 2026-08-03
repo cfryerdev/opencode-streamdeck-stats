@@ -1,5 +1,9 @@
 # Opencode + Stream Deck Stats
 
+Open source stream deck plugin & opencode plugin to get real time stats from opencode.
+
+<img src="/docs/SCREENSHOT.jpg" width="600" />
+
 This repo now has two clearly separated parts:
 
 - `opencode-plugin/` - the OpenCode plugin that does stats aggregation and serves a local `/stats` endpoint.
