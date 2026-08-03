@@ -38,6 +38,7 @@ function buildStats(row) {
   const cacheWrite = toNumber(row.cache_write);
   const costLastDay = toNumber(row.cost_last_day);
   const costLast30Days = toNumber(row.cost_last_30_days);
+  const costThisMonth = toNumber(row.cost_this_month);
   const totalSessions = toNumber(row.total_sessions);
   const activeSessions = toNumber(row.active_sessions);
   const earliestCreated = toNumber(row.earliest_created);
@@ -56,6 +57,7 @@ function buildStats(row) {
     costPerDay: totalCost / days,
     costLastDay,
     costLast30Days,
+    costThisMonth,
     inputTokens,
     outputTokens,
     reasoningTokens,
@@ -79,6 +81,7 @@ async function queryStats() {
     "COALESCE(SUM(CASE WHEN parent_id IS NULL THEN tokens_cache_write ELSE 0 END), 0) AS cache_write, " +
     "COALESCE(SUM(CASE WHEN parent_id IS NULL AND time_updated >= (strftime('%s','now')*1000 - 86400000) THEN cost ELSE 0 END), 0) AS cost_last_day, " +
     "COALESCE(SUM(CASE WHEN parent_id IS NULL AND time_updated >= (strftime('%s','now')*1000 - 30*86400000) THEN cost ELSE 0 END), 0) AS cost_last_30_days, " +
+    "COALESCE(SUM(CASE WHEN parent_id IS NULL AND time_updated >= (strftime('%s','now','start of month')*1000) THEN cost ELSE 0 END), 0) AS cost_this_month, " +
     "COALESCE(SUM(CASE WHEN parent_id IS NULL THEN 1 ELSE 0 END), 0) AS total_sessions, " +
     "COALESCE(SUM(CASE WHEN parent_id IS NULL AND time_archived IS NULL THEN 1 ELSE 0 END), 0) AS active_sessions, " +
     "COALESCE(MIN(CASE WHEN parent_id IS NULL THEN time_created END), 0) AS earliest_created, " +

@@ -1,6 +1,6 @@
 {
   "name": "opencode-streamdeck",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Display your opencode usage stats on your Stream Deck",
 
   "scripts": {

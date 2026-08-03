@@ -39,6 +39,7 @@ export interface Stats {
   costPerDay: number;
   costLastDay: number;
   costLast30Days: number;
+  costThisMonth: number;
   inputTokens: number;
   outputTokens: number;
   reasoningTokens: number;
@@ -99,6 +100,7 @@ export class OpenCodeClient {
       costPerDay: asNumber(payload.costPerDay),
       costLastDay: asNumber(payload.costLastDay),
       costLast30Days: asNumber(payload.costLast30Days),
+      costThisMonth: asNumber(payload.costThisMonth),
       inputTokens: asNumber(payload.inputTokens),
       outputTokens: asNumber(payload.outputTokens),
       reasoningTokens: asNumber(payload.reasoningTokens),
@@ -142,6 +144,7 @@ export class OpenCodeClient {
       "COALESCE(SUM(CASE WHEN parent_id IS NULL THEN tokens_cache_write ELSE 0 END), 0) AS cache_write, " +
       "COALESCE(SUM(CASE WHEN parent_id IS NULL AND time_updated >= (strftime('%s','now')*1000 - 86400000) THEN cost ELSE 0 END), 0) AS cost_last_day, " +
       "COALESCE(SUM(CASE WHEN parent_id IS NULL AND time_updated >= (strftime('%s','now')*1000 - 30*86400000) THEN cost ELSE 0 END), 0) AS cost_last_30_days, " +
+      "COALESCE(SUM(CASE WHEN parent_id IS NULL AND time_updated >= (strftime('%s','now','start of month')*1000) THEN cost ELSE 0 END), 0) AS cost_this_month, " +
       "COALESCE(SUM(CASE WHEN parent_id IS NULL THEN 1 ELSE 0 END), 0) AS total_sessions, " +
       "COALESCE(SUM(CASE WHEN parent_id IS NULL AND time_archived IS NULL THEN 1 ELSE 0 END), 0) AS active_sessions, " +
       "COALESCE(MIN(CASE WHEN parent_id IS NULL THEN time_created END), 0) AS earliest_created, " +
@@ -158,6 +161,7 @@ export class OpenCodeClient {
       cache_write?: number;
       cost_last_day?: number;
       cost_last_30_days?: number;
+      cost_this_month?: number;
       total_sessions?: number;
       active_sessions?: number;
       earliest_created?: number;
@@ -174,6 +178,7 @@ export class OpenCodeClient {
     const cacheWrite = row.cache_write ?? 0;
     const costLastDay = row.cost_last_day ?? 0;
     const costLast30Days = row.cost_last_30_days ?? 0;
+    const costThisMonth = row.cost_this_month ?? 0;
     const totalSessions = row.total_sessions ?? 0;
     const activeSessions = row.active_sessions ?? 0;
     const earliestCreated = row.earliest_created ?? 0;
@@ -192,6 +197,7 @@ export class OpenCodeClient {
       costPerDay: totalCost / days,
       costLastDay,
       costLast30Days,
+      costThisMonth,
       inputTokens,
       outputTokens,
       reasoningTokens,
@@ -256,12 +262,14 @@ export function computeStats(sessions: SessionInfo[], activeCount: number): Stat
   let cacheWrite = 0;
   let costLastDay = 0;
   let costLast30Days = 0;
+  let costThisMonth = 0;
   let earliestCreated = Infinity;
   let latestUpdated = -Infinity;
   let rootCount = 0;
   const now = Date.now();
   const oneDayAgo = now - 86_400_000;
   const thirtyDaysAgo = now - 30 * 86_400_000;
+  const monthStartMs = new Date(new Date().getFullYear(), new Date().getMonth(), 1).getTime();
 
   for (const s of sessions) {
     if (hasParent(s)) {
@@ -281,6 +289,9 @@ export function computeStats(sessions: SessionInfo[], activeCount: number): Stat
     if ((s.time?.updated ?? 0) >= thirtyDaysAgo) {
       costLast30Days += s.cost ?? 0;
     }
+    if ((s.time?.updated ?? 0) >= monthStartMs) {
+      costThisMonth += s.cost ?? 0;
+    }
     if (s.time?.created) earliestCreated = Math.min(earliestCreated, s.time.created);
     if (s.time?.updated) latestUpdated = Math.max(latestUpdated, s.time.updated);
   }
@@ -299,6 +310,7 @@ export function computeStats(sessions: SessionInfo[], activeCount: number): Stat
     costPerDay,
     costLastDay,
     costLast30Days,
+    costThisMonth,
     inputTokens,
     outputTokens,
     reasoningTokens,

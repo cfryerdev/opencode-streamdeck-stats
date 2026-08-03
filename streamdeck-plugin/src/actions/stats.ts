@@ -33,7 +33,7 @@ export interface StatsSettings extends JsonObject {
 
 const DEFAULT_INTERVAL = 60;
 const MIN_INTERVAL = 10;
-const DEFAULT_VALUE_FONT_SIZE = 38;
+const DEFAULT_VALUE_FONT_SIZE = 30;
 const MIN_VALUE_FONT_SIZE = 20;
 const MAX_VALUE_FONT_SIZE = 52;
 const DEFAULT_LABEL_SIZE = 18;
