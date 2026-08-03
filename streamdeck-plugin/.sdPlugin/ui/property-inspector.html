@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Opencode</title>
+    <script src="https://sdpi-components.dev/releases/v4/sdpi-components.js"></script>
+  </head>
+  <body>
+    <div class="sdpi-container">
+      <sdpi-item label="Refresh Interval">
+        <sdpi-select setting="refreshInterval">
+          <option value="10">10 seconds</option>
+          <option value="60" selected>1 minute</option>
+          <option value="3600">1 hour</option>
+          <option value="86400">1 day</option>
+        </sdpi-select>
+      </sdpi-item>
+
+      <sdpi-item id="cost-period-item" label="Cost Period">
+        <sdpi-select setting="costPeriod">
+          <option value="day" selected>Last 24 hours</option>
+          <option value="month">Last 30 days</option>
+        </sdpi-select>
+      </sdpi-item>
+
+      <sdpi-item label="Show Key Label">
+        <sdpi-checkbox setting="showLabel" checked>Show stat name below the tile</sdpi-checkbox>
+      </sdpi-item>
+
+      <sdpi-item label="Value Size (px)">
+        <sdpi-textfield setting="valueFontSize" placeholder="38" pattern="^[0-9]+$"></sdpi-textfield>
+      </sdpi-item>
+
+      <sdpi-item label="Label Size (px)">
+        <sdpi-textfield setting="labelSize" placeholder="18" pattern="^[0-9]+$"></sdpi-textfield>
+      </sdpi-item>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const action = params.get("action");
+        const costPeriodItem = document.getElementById("cost-period-item");
+
+        if (action !== "com.chrisfryer.opencode-stats.cost-per-day" && costPeriodItem) {
+          costPeriodItem.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

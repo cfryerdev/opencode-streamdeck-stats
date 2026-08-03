@@ -1,0 +1,18 @@
+{
+  "name": "opencode-streamdeck-workspace",
+  "private": true,
+  "scripts": {
+    "streamdeck:build": "npm --prefix streamdeck-plugin run build",
+    "streamdeck:watch": "npm --prefix streamdeck-plugin run watch",
+    "streamdeck:sync": "npm --prefix streamdeck-plugin run sync",
+    "opencode:install": "mkdir -p \"$HOME/.config/opencode/plugins\" && cp opencode-plugin/opencode-streamdeck-stats.js \"$HOME/.config/opencode/plugins/opencode-streamdeck-stats.js\"",
+    "release": "semantic-release"
+  },
+  "devDependencies": {
+    "@semantic-release/exec": "^7.0.3",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "semantic-release": "^24.2.7"
+  }
+}

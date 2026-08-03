@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.elgato.com/json-schema/streamdeck-plugin",
+  "Actions": [
+    {
+      "Icon": "imgs/actions/total-cost",
+      "Category": "Opencode",
+      "Name": "Total Cost",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.total-cost",
+      "Tooltip": "Total cost (USD) across all opencode sessions",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/cost-per-day",
+      "Category": "Opencode",
+      "Name": "Cost per Day",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.cost-per-day",
+      "Tooltip": "Average cost per day (USD)",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/input-tokens",
+      "Category": "Opencode",
+      "Name": "Input Tokens",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.input-tokens",
+      "Tooltip": "Total input tokens across all sessions",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/output-tokens",
+      "Category": "Opencode",
+      "Name": "Output Tokens",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.output-tokens",
+      "Tooltip": "Total output tokens across all sessions",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/reasoning-tokens",
+      "Category": "Opencode",
+      "Name": "Reasoning Tokens",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.reasoning-tokens",
+      "Tooltip": "Total reasoning tokens across all sessions",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/cache-read",
+      "Category": "Opencode",
+      "Name": "Cache Read",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.cache-read",
+      "Tooltip": "Total cache read tokens across all sessions",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/cache-write",
+      "Category": "Opencode",
+      "Name": "Cache Write",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.cache-write",
+      "Tooltip": "Total cache write tokens across all sessions",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/active-sessions",
+      "Category": "Opencode",
+      "Name": "Active Sessions",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.active-sessions",
+      "Tooltip": "Number of currently active opencode sessions",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/total-sessions",
+      "Category": "Opencode",
+      "Name": "Total Sessions",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.total-sessions",
+      "Tooltip": "Total number of opencode sessions",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
+      "Icon": "imgs/actions/tokens-per-session",
+      "Category": "Opencode",
+      "Name": "Tokens per Session",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.tokens-per-session",
+      "Tooltip": "Average tokens per session",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    }
+  ],
+  "Author": "Chris Fryer",
+  "CodePath": "bin/plugin.js",
+  "Description": "Display your opencode usage stats (cost, tokens, sessions) on your Stream Deck.",
+  "Icon": "plugin_icon",
+  "Name": "Opencode",
+  "Category": "Opencode",
+  "CategoryIcon": "category_icon",
+  "Nodejs": {
+    "Version": "20"
+  },
+  "OS": [
+    { "Platform": "mac", "MinimumVersion": "13" },
+    { "Platform": "windows", "MinimumVersion": "10" }
+  ],
+  "UUID": "com.chrisfryer.opencode-stats",
+  "Version": "1.0.0.10",
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "7.1"
+  }
+}

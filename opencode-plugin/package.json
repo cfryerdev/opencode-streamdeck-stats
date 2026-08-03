@@ -1,0 +1,28 @@
+{
+  "name": "opencode-streamdeck-stats",
+  "version": "0.1.0",
+  "description": "OpenCode plugin that serves Stream Deck-ready stats from local OpenCode data",
+  "type": "module",
+  "main": "./opencode-streamdeck-stats.js",
+  "exports": {
+    ".": "./opencode-streamdeck-stats.js"
+  },
+  "files": [
+    "opencode-streamdeck-stats.js",
+    "README.md"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "streamdeck",
+    "plugin",
+    "stats"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
