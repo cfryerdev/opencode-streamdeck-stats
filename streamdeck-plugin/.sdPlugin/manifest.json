@@ -38,6 +38,24 @@
       "UserTitleEnabled": false
     },
     {
+      "Icon": "imgs/actions/cost-this-month",
+      "Category": "Opencode",
+      "Name": "Cost this Month",
+      "States": [
+        {
+          "Image": "imgs/actions/key",
+          "TitleAlignment": "bottom",
+          "TitleColor": "#F1ECEC",
+          "FontSize": 14,
+          "ShowTitle": true
+        }
+      ],
+      "UUID": "com.chrisfryer.opencode-stats.cost-this-month",
+      "Tooltip": "Cost for the current calendar month (USD)",
+      "PropertyInspectorPath": "ui/property-inspector.html",
+      "UserTitleEnabled": false
+    },
+    {
       "Icon": "imgs/actions/input-tokens",
       "Category": "Opencode",
       "Name": "Input Tokens",
@@ -197,7 +215,7 @@
     { "Platform": "windows", "MinimumVersion": "10" }
   ],
   "UUID": "com.chrisfryer.opencode-stats",
-  "Version": "1.0.0.10",
+  "Version": "1.0.0.11",
   "SDKVersion": 2,
   "Software": {
     "MinimumVersion": "7.1"

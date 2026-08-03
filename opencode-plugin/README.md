@@ -55,6 +55,7 @@ OpenCode loads plugins at startup. Restart is required after updating this file.
     "costPerDay": 0,
     "costLastDay": 0,
     "costLast30Days": 0,
+    "costThisMonth": 0,
     "inputTokens": 0,
     "outputTokens": 0,
     "reasoningTokens": 0,

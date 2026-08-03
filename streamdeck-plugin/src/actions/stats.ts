@@ -13,6 +13,7 @@ import { OpenCodeClient, DEFAULT_SERVER_URL, type Stats } from "../api";
 export type StatType =
   | "totalCost"
   | "costPerDay"
+  | "costThisMonth"
   | "inputTokens"
   | "outputTokens"
   | "reasoningTokens"
@@ -56,6 +57,7 @@ interface ActionRuntime {
 const STAT_META: Record<StatType, StatVisualMeta> = {
   totalCost: { label: "Total Cost" },
   costPerDay: { label: "Cost / Day" },
+  costThisMonth: { label: "Cost this Month" },
   inputTokens: { label: "Input Tokens" },
   outputTokens: { label: "Output Tokens" },
   reasoningTokens: { label: "Reasoning Tokens" },
@@ -124,6 +126,8 @@ function getStatValue(stats: Stats, type: StatType): string {
       return formatCost(stats.totalCost);
     case "costPerDay":
       return formatCost(stats.costLastDay);
+    case "costThisMonth":
+      return formatCost(stats.costThisMonth);
     case "inputTokens":
       return formatNumber(stats.inputTokens);
     case "outputTokens":
@@ -373,6 +377,11 @@ export class TotalCostAction extends StatsActionBase {
 @action({ UUID: "com.chrisfryer.opencode-stats.cost-per-day" })
 export class CostPerDayAction extends StatsActionBase {
   readonly statType = "costPerDay" as const;
+}
+
+@action({ UUID: "com.chrisfryer.opencode-stats.cost-this-month" })
+export class CostThisMonthAction extends StatsActionBase {
+  readonly statType = "costThisMonth" as const;
 }
 
 @action({ UUID: "com.chrisfryer.opencode-stats.input-tokens" })

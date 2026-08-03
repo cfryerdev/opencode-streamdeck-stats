@@ -23,13 +23,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org
-
-      - name: Strip _authToken so OIDC trusted publishing is used
-        run: |
-          npmrc="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
-          sed -i '/_authToken/d' "$npmrc" 2>/dev/null || true
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
 
       - name: Install dependencies
         run: npm ci
@@ -40,6 +36,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm via OIDC
-        run: |
-          unset NODE_AUTH_TOKEN
-          cd opencode-plugin && npm publish --access public
+        run: cd opencode-plugin && npm publish --provenance --access public

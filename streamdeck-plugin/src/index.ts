@@ -2,6 +2,7 @@ import streamDeck from "@elgato/streamdeck";
 import {
   TotalCostAction,
   CostPerDayAction,
+  CostThisMonthAction,
   InputTokensAction,
   OutputTokensAction,
   ReasoningTokensAction,
@@ -14,6 +15,7 @@ import {
 
 streamDeck.actions.registerAction(new TotalCostAction());
 streamDeck.actions.registerAction(new CostPerDayAction());
+streamDeck.actions.registerAction(new CostThisMonthAction());
 streamDeck.actions.registerAction(new InputTokensAction());
 streamDeck.actions.registerAction(new OutputTokensAction());
 streamDeck.actions.registerAction(new ReasoningTokensAction());
