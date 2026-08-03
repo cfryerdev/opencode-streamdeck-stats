@@ -57,7 +57,7 @@ interface ActionRuntime {
 const STAT_META: Record<StatType, StatVisualMeta> = {
   totalCost: { label: "Total Cost" },
   costPerDay: { label: "Cost / Day" },
-  costThisMonth: { label: "Cost this Month" },
+  costThisMonth: { label: "Cost (Month)" },
   inputTokens: { label: "Input Tokens" },
   outputTokens: { label: "Output Tokens" },
   reasoningTokens: { label: "Reasoning Tokens" },
