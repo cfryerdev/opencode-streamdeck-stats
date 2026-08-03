@@ -16,8 +16,14 @@
       "@semantic-release/npm",
       {
         "pkgRoot": "opencode-plugin",
-        "npmPublish": true,
+        "npmPublish": false,
         "tarballDir": "dist"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "cd opencode-plugin && npm publish --provenance --access public"
       }
     ],
     [
