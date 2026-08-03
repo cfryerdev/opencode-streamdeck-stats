@@ -21,7 +21,7 @@
     [
       "@semantic-release/exec",
       {
-        "publishCmd": "cd opencode-plugin && NODE_AUTH_TOKEN= npm publish --provenance --access public"
+        "publishCmd": "echo 'npm publish handled by workflow step'"
       }
     ],
     [
