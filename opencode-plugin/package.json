@@ -11,6 +11,10 @@
     "opencode-streamdeck-stats.js",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfryerdev/opencode-streamdeck-stats.git"
+  },
   "license": "MIT",
   "keywords": [
     "opencode",
@@ -22,7 +26,6 @@
     "node": ">=20"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   }
 }

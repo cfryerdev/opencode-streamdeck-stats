@@ -53,11 +53,23 @@ On every push to `main`, the workflow will:
 1. Create a GitHub Release
 2. Publish `opencode-plugin/` to npm
 
-### One-time npm setup
+### One-time npm trusted publishing setup
 
-1. Ensure the npm package name is available (or create it under your npm org).
-2. Create an npm access token with publish rights.
-3. In GitHub repo settings, add secret `NPM_TOKEN`.
+1. Ensure the package exists on npm (`opencode-streamdeck-stats`).
+   - npm currently requires package settings to exist before you can attach a trusted publisher.
+   - If this is the first release ever, publish once manually from `opencode-plugin/` to bootstrap:
+
+   ```bash
+   cd opencode-plugin
+   npm publish --access public --provenance=false
+   ```
+2. Open `https://www.npmjs.com/package/opencode-streamdeck-stats/access`.
+3. Add a Trusted Publisher:
+   - Provider: GitHub Actions
+   - Owner/User: `cfryerdev`
+   - Repository: `opencode-streamdeck-stats`
+   - Workflow file: `release.yml`
+   - Allowed action: `npm publish`
 4. Push to `main`.
 
-The workflow uses `GITHUB_TOKEN` (automatic) and `NPM_TOKEN` (you provide).
+The workflow uses GitHub OIDC trusted publishing (`id-token: write`) and does not require `NPM_TOKEN`.
