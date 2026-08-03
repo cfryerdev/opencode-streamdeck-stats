@@ -30,7 +30,8 @@ jobs:
         run: npm ci
 
       - name: Release to GitHub and npm
-        run: npm run release
+        run: npm run release -- --debug
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
+          DEBUG: semantic-release:*

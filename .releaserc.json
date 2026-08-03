@@ -13,11 +13,9 @@
     ],
     "@semantic-release/release-notes-generator",
     [
-      "@semantic-release/npm",
+      "@semantic-release/exec",
       {
-        "pkgRoot": "opencode-plugin",
-        "npmPublish": false,
-        "tarballDir": "dist"
+        "prepareCmd": "cd opencode-plugin && npm version ${nextRelease.version} --git-tag-version false && mkdir -p ../dist && npm pack --pack-destination ../dist"
       }
     ],
     [
