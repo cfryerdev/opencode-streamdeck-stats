@@ -23,20 +23,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           registry-url: https://registry.npmjs.org
 
-      - name: Configure npm for OIDC trusted publishing
-        run: |
-          sed -i '' '/_authToken/d' ~/.npmrc || sed -i '/_authToken/d' ~/.npmrc || true
-          cat ~/.npmrc || true
+      - name: Strip .npmrc authToken so OIDC trusted publishing is used
+        run: sed -i '/_authToken/d' ~/.npmrc || true
 
       - name: Install dependencies
         run: npm ci
 
       - name: Release to GitHub and npm
-        run: npm run release -- --debug
+        run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
-          DEBUG: semantic-release:*
