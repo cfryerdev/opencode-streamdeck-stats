@@ -41,5 +41,14 @@ jobs:
 
       - name: Publish to npm via OIDC
         run: |
+          echo "=== .npmrc contents ==="
+          cat "${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}" || true
+          echo "=== env check ==="
+          echo "NODE_AUTH_TOKEN set: ${NODE_AUTH_TOKEN:+yes}"
+          echo "ACTIONS_ID_TOKEN_REQUEST_URL set: ${ACTIONS_ID_TOKEN_REQUEST_URL:+yes}"
+          echo "ACTIONS_ID_TOKEN_REQUEST_TOKEN set: ${ACTIONS_ID_TOKEN_REQUEST_TOKEN:+yes}"
+          echo "npm version:"
+          npm --version
           unset NODE_AUTH_TOKEN
+          echo "After unset - NODE_AUTH_TOKEN set: ${NODE_AUTH_TOKEN:+yes}"
           cd opencode-plugin && npm publish --provenance --access public
