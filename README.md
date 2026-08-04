@@ -46,9 +46,43 @@ curl http://127.0.0.1:4649/stats
 # {"totalCost":126.68,"costLastDay":5.43,"costLast30Days":5.43,...}
 ```
 
-### 2. Elgato Stream Deck Plugin
+### 2. Elgato Stream Deck Plugin (Local Install)
 
-Coming soon...
+Download the latest `.sdPlugin` zip from [GitHub Releases](https://github.com/cfryerdev/opencode-streamdeck-stats/releases), then extract and copy it into Stream Deck's plugins directory:
+
+**macOS:**
+
+```bash
+# Download the latest release zip
+curl -L -o sdPlugin.zip \
+  https://github.com/cfryerdev/opencode-streamdeck-stats/releases/latest/download/opencode-streamdeck-stats-sdPlugin-1.1.0.zip
+
+# Extract
+unzip sdPlugin.zip
+
+# Install into Stream Deck's plugins directory
+cp -R com.chrisfryer.opencode-stats.sdPlugin \
+  ~/Library/Application\ Support/com.elgato.StreamDeck/Plugins/
+
+# Restart Stream Deck
+pkill -f "Stream Deck"; sleep 2; open "/Applications/Elgato Stream Deck.app"
+```
+
+**Windows (PowerShell):**
+
+```powershell
+# Download
+Invoke-WebRequest -Uri "https://github.com/cfryerdev/opencode-streamdeck-stats/releases/latest/download/opencode-streamdeck-stats-sdPlugin-1.1.0.zip" -OutFile "sdPlugin.zip"
+
+# Extract
+Expand-Archive sdPlugin.zip -DestinationPath .
+
+# Install
+Copy-Item -Recurse com.chrisfryer.opencode-stats.sdPlugin `
+  "$env:APPDATA\Elgato\StreamDeck\Plugins\"
+```
+
+After installing, open the Stream Deck app and drag actions from the **Opencode** category onto your keys.
 
 
 ## Folder layout
