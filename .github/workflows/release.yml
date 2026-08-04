@@ -62,21 +62,31 @@ jobs:
       - name: Stage opencode plugin file
         run: cp opencode-plugin/opencode-streamdeck-stats.js opencode-streamdeck-stats-${{ steps.pkg.outputs.version }}.js
 
-      - name: Tag release
-        if: steps.check.outputs.published == 'false'
+      - name: Ensure release tag exists
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag "v${{ steps.pkg.outputs.version }}"
-          git push origin "v${{ steps.pkg.outputs.version }}"
+          if ! git rev-parse "v${{ steps.pkg.outputs.version }}" >/dev/null 2>&1; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag "v${{ steps.pkg.outputs.version }}"
+            git push origin "v${{ steps.pkg.outputs.version }}"
+          fi
 
-      - name: Create GitHub release with assets
-        if: steps.check.outputs.published == 'false'
+      - name: Create or update GitHub release with assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "v${{ steps.pkg.outputs.version }}" \
-            --title "v${{ steps.pkg.outputs.version }}" \
-            --generate-notes \
-            "opencode-streamdeck-stats-sdPlugin-${{ steps.pkg.outputs.version }}.zip" \
-            "opencode-streamdeck-stats-${{ steps.pkg.outputs.version }}.js"
+          TAG="v${{ steps.pkg.outputs.version }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            # Release exists — upload assets
+            gh release upload "$TAG" \
+              "opencode-streamdeck-stats-sdPlugin-${{ steps.pkg.outputs.version }}.zip" \
+              "opencode-streamdeck-stats-${{ steps.pkg.outputs.version }}.js" \
+              --clobber
+          else
+            # Create new release with assets
+            gh release create "$TAG" \
+              --title "$TAG" \
+              --generate-notes \
+              "opencode-streamdeck-stats-sdPlugin-${{ steps.pkg.outputs.version }}.zip" \
+              "opencode-streamdeck-stats-${{ steps.pkg.outputs.version }}.js"
+          fi
