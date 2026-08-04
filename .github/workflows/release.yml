@@ -46,6 +46,22 @@ jobs:
         if: steps.check.outputs.published == 'false'
         run: cd opencode-plugin && npm publish --provenance --access public
 
+      - name: Install Stream Deck plugin dependencies
+        run: npm --prefix streamdeck-plugin install
+
+      - name: Build Stream Deck plugin
+        run: npm --prefix streamdeck-plugin run build
+
+      - name: Package Stream Deck plugin
+        run: |
+          cd streamdeck-plugin
+          zip -r "../opencode-streamdeck-stats-sdPlugin-${{ steps.pkg.outputs.version }}.zip" \
+            com.chrisfryer.opencode-stats.sdPlugin \
+            -x "*/logs/*"
+
+      - name: Stage opencode plugin file
+        run: cp opencode-plugin/opencode-streamdeck-stats.js opencode-streamdeck-stats-${{ steps.pkg.outputs.version }}.js
+
       - name: Tag release
         if: steps.check.outputs.published == 'false'
         run: |
@@ -54,11 +70,13 @@ jobs:
           git tag "v${{ steps.pkg.outputs.version }}"
           git push origin "v${{ steps.pkg.outputs.version }}"
 
-      - name: Create GitHub release
+      - name: Create GitHub release with assets
         if: steps.check.outputs.published == 'false'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "v${{ steps.pkg.outputs.version }}" \
             --title "v${{ steps.pkg.outputs.version }}" \
-            --generate-notes
+            --generate-notes \
+            "opencode-streamdeck-stats-sdPlugin-${{ steps.pkg.outputs.version }}.zip" \
+            "opencode-streamdeck-stats-${{ steps.pkg.outputs.version }}.js"
